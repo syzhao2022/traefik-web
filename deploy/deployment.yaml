@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: custom-traefik-service
+  name: custom-traefik-service
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: custom-traefik-service
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: custom-traefik-service
+    spec:
+      containers:
+      #- image: crpi-ubf32fnvh1oxdpf6.cn-hangzhou.personal.cr.aliyuncs.com/syzhao/jarvis-openhand-base:20260126-2
+      - image: crpi-ubf32fnvh1oxdpf6.cn-hangzhou.personal.cr.aliyuncs.com/syzhao/traefik-web:20261030-1
+        #command: ["sleep","100000000"]
+        imagePullPolicy: IfNotPresent
+        name: jarvis-openhand-base
+        resources: {}
+        ports:
+        - containerPort: 8000
+          name: server
+          protocol: TCP
+          hostPort: 58000
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      serviceAccount: custom-traefik-server
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
