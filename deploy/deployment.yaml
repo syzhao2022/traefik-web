@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       #- image: crpi-ubf32fnvh1oxdpf6.cn-hangzhou.personal.cr.aliyuncs.com/syzhao/jarvis-openhand-base:20260126-2
-      - image: crpi-ubf32fnvh1oxdpf6.cn-hangzhou.personal.cr.aliyuncs.com/syzhao/traefik-web:20261030-1
+      - image: crpi-ubf32fnvh1oxdpf6.cn-hangzhou.personal.cr.aliyuncs.com/syzhao/traefik-web:20261030-2
         #command: ["sleep","100000000"]
         imagePullPolicy: IfNotPresent
         name: jarvis-openhand-base
