@@ -244,6 +244,7 @@ const initWebSocket = () => {
 	 console.log(targetItem.backends)
 	 if (targetItem){
 		targetItem.backends = message.data[0].backends
+		targetItem.updatedAt = message.data[0].updatedAt
 	 }else{
          	services.value.push(message.data[0])
 	 }

@@ -369,7 +369,8 @@ async def get_traefik_services():
                     "status": "online",
                     "backends": [],
                     "totalTraffic": "100",
-                    "updatedAt": item["metadata"].get("creationTimestamp", datetime.now().isoformat())
+                    #"updatedAt": item["metadata"].get("creationTimestamp", datetime.now().isoformat())
+                    "updatedAt": datetime.now().isoformat()
                     }
                 backends_spec = item.get("spec").get("weighted")
                 if backends_spec is not None:
