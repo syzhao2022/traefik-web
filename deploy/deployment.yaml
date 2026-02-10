@@ -26,6 +26,9 @@ spec:
         #command: ["sleep","100000000"]
         imagePullPolicy: IfNotPresent
         name: jarvis-openhand-base
+        env:
+        - name: TZ
+          value: Asia/Shanghai
         resources: {}
         ports:
         - containerPort: 8000

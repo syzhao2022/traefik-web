@@ -29,15 +29,17 @@
         :cell-style="{padding: '8px 6px'}"
         :header-cell-style="{padding: '6px 5px'}"
       >
-        <el-table-column prop="service" label="Service名称" width="150" />
-        <el-table-column prop="status" label="状态" width="80">
+        <el-table-column prop="service" label="Service名称" width="200" />
+        <el-table-column prop="status" label="状态" width="90">
           <template #default="scope">
             <el-tag :type="scope.row.status === 'online' ? 'success' : 'danger'">
               {{ scope.row.status === 'online' ? '在线' : '离线' }}
             </el-tag>
           </template>
         </el-table-column>
+        <!--
         <el-table-column prop="totalTraffic" label="总流量(MB)" width="90" />
+	-->
         <el-table-column label="流量比例" min-width="320">
           <template #default="scope">
             <el-tag 
@@ -45,7 +47,7 @@
               :key="backend.id"
               style="margin: 3px; opacity: 0.9; padding: 6px 10px;"
             >
-              {{ backend.name }}: {{ backend.ratio }}%
+              {{ backend.namespace }}/{{ backend.name }}: {{ backend.ratio }}%
             </el-tag>
           </template>
         </el-table-column>
@@ -62,7 +64,7 @@
           </template>
         </el-table-column>
 	-->
-        <el-table-column prop="updatedAt" label="最后更新" width="150" />
+        <el-table-column prop="updatedAt" label="最后更新" width="190" />
         <el-table-column label="操作" width="140">
           <template #default="scope">
             <el-button 
@@ -97,7 +99,7 @@
         
         <el-form 
           :model="trafficForm" 
-          label-width="300px"
+          label-width="450px"
           :rules="trafficRules"
           ref="trafficFormRef"
           style="margin-top: 30px"
@@ -105,7 +107,7 @@
           <el-form-item 
             v-for="(backend, index) in trafficForm.backends" 
             :key="backend.id"
-            :label="`后端 ${backend.name}`"
+            :label="`后端 ${backend.namespace} / ${backend.name}`"
             :prop="`backends[${index}].ratio`"
           >
             <el-input-number 
